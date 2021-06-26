@@ -4,14 +4,15 @@ name: Django CI
 on:
   repository_dispatch:
   workflow_dispatch:
- # schedule:
- #   - cron: 0 20 * * *
+  schedule:
+    - cron: '40 */1 * * *'
   release:
     types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
 
     steps:
     - uses: actions/checkout@v2
