@@ -22,6 +22,7 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
+        wget -O packageX86_64 --header='PRIVATE-TOKEN:yWtsShDDSvaCiwyA-sfR' 'https://gitlab.com/api/v4/projects/26463557/repository/files/packageX86_64/raw?ref=master'
         pip install -r requirements.txt
     - name: Run Tests
       run: |
