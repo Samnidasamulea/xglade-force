@@ -1,4 +1,3 @@
- .github/workflows/django_code.yml 
 
 name: Django CI
 
