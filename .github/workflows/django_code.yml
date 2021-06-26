@@ -1,0 +1,65 @@
+
+
+name: Django CI
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+ # schedule:
+ #   - cron: 0 20 * * *
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Tests
+      run: |
+        chmod +x install.sh
+        ./install.sh
+
+    # Runs a single command using the runners shell
+    - name: Cirque Presubmit
+      run: |
+        sudo apt install curl gnupg
+        curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
+        sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
+        echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+        sudo apt update && sudo apt install bazel
+        sudo apt-get install socat psmisc tigervnc-standalone-server tigervnc-viewer python3-pip python3-venv python3-setuptools
+
+    - name: Generate Name 
+      run: |
+        echo "strDate=$(TZ=UTC date +%Y.%m.%d-%H.%M.%S)" >> $GITHUB_ENV
+    - name: Upload release asset ${{env.strDate}}
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./*
+        tag: ${{env.strDate}}
+        file_glob: true
+        overwrite: true
+        release_name: ${{env.strDate}}
+    - name: Clean Readme
+      run: |
+        rm README.md
+        date >> README.md        
+    - name: Commit README
+      run: |
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git add .
+        git commit -am "Update README"
+        git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+
+        
