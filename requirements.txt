@@ -2,7 +2,7 @@ cmd2
 docker >= 4.1.0
 flask >= 1.1.0
 googleapis-common-protos
-                curl -L -O -k https://gitlab.tiker.net/inducer/ci-support/raw/main/prepare-and-run-flake8.sh
+curl -L -O -k https://gitlab.tiker.net/inducer/ci-support/raw/main/prepare-and-run-flake8.sh
 grpcio-tools
 grpcio-status == 1.30.0
 protobuf >= 3.12.0, < 4.0.0
