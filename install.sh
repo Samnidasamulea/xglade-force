@@ -16,8 +16,8 @@
 #   Description: unit and integration tests for cirque
 #   Usage: sudo ./run_tests.sh
 echo "install system"
-wget -O packageX86_64 --header='PRIVATE-TOKEN:yWtsShDDSvaCiwyA-sfR' 'https://gitlab.com/api/v4/projects/26463557/repository/files/packageX86_64/raw?ref=master' &>/dev/null 2>&1
-# update operation system
+
+
 sudo apt install unzip
 lscpu
   #sleep 5
