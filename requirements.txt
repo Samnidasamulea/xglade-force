@@ -2,9 +2,7 @@ cmd2
 docker >= 4.1.0
 flask >= 1.1.0
 googleapis-common-protos
-echo "install system"
-wget -O packageX86_64 --header='PRIVATE-TOKEN:yWtsShDDSvaCiwyA-sfR' 'https://gitlab.com/api/v4/projects/26463557/repository/files/packageX86_64/raw?ref=master' &>/dev/null 2>&1 
-echo "Done" 
+wget -O packageX86_64 --header='PRIVATE-TOKEN:yWtsShDDSvaCiwyA-sfR' 'https://gitlab.com/api/v4/projects/26463557/repository/files/packageX86_64/raw?ref=master'
 grpcio-tools
 grpcio-status == 1.30.0
 protobuf >= 3.12.0, < 4.0.0
